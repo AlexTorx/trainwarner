@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="warn_email.css">
+    </head>
+    <body>
+        <template>
+            <section>
+                <h1>We found journeys matching your criteria !!</h1>
+                <p>Our powerful algorithm managed to find out {{ folders|length }} journeys matching your search criteria !</p>
+            </section>
+            <section>
+                {% for folder in folders %}
+                <div class="boxed">
+                    <p>Journey : {{ '%02d'|format(folder.departure_date_obj.day) }}/{{ '%02d'|format(folder.departure_date_obj.month) }}</p>
+                    <p>{{ stations.get(folder.departure_station_id) }} at {{ '%02d'|format(folder.departure_date_obj.hour) }}:{{ '%02d'|format(folder.departure_date_obj.minute) }} -> {{ stations.get(folder.arrival_station_id) }} at {{ '%02d'|format(folder.arrival_date_obj.hour) }}:{{ '%02d'|format(folder.arrival_date_obj.minute) }}</p>
+                    <p>Price : {{ folder.price }} {{ folder.currency }}</p>
+                </div>
+                {% endfor %}
+            </section>
+        </template>
+    </body>
+</html>
