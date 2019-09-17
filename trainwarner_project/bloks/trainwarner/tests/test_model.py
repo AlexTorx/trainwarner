@@ -1,5 +1,7 @@
+import pytest
 
 
+@pytest.mark.skip(reason="Keep for reminder pruposes")
 class TestExample:
     """ Test python api on AnyBlok models"""
 

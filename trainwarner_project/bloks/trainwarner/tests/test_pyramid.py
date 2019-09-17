@@ -1,6 +1,7 @@
 import pytest
 
 
+@pytest.mark.skip(reason="Keep for reminder pruposes")
 @pytest.mark.usefixtures('rollback_registry')
 class TestPyramidExampleViews:
     """ Test pyramid routes with PyramidBlokTestCase"""
