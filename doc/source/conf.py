@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'TrainWarner'
-copyright = '2017, Alexis Tourneux <tourneuxalexis@gmail.com>'
+copyright = '2019, Alexis Tourneux <tourneuxalexis@gmail.com>'
 author = 'Alexis Tourneux'
 
 # The version info for the project you're documenting, acts as replacement for
