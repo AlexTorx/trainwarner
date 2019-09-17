@@ -1,7 +1,7 @@
 API Documentation
 =================
 
-.. automodule:: trainwarner.trainwarner
+.. automodule:: trainwarner_project.bloks
    :members:
    :undoc-members:
    :show-inheritance:
