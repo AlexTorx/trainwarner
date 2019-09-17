@@ -59,7 +59,7 @@ lint: ## check style with flake8
 	flake8 trainwarner
 
 test: ## run tests
-	ANYBLOK_CONFIG_FILE=app.test.cfg py.test -v -s trainwarner
+	ANYBLOK_CONFIG_FILE=app.test.cfg py.test -v -s trainwarner/bloks
 
 documentation: ## generate documentation
 	anyblok_doc -c app.test.cfg --doc-format RST --doc-output doc/source/apidoc.rst
