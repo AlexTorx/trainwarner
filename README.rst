@@ -2,7 +2,8 @@
 TrainWarner
 ===========
 
-TrainWarner project designed for setuping watchdogs on train journeys
+TrainWarner project designed for setting up watchdogs on train journeys.
+The project is aimed at using at using AnyBlok framework in order to implement database models, HTTP API endpoints, HTML rendering, etc...
 
 
 * Free software: Mozilla Public License Version 2.0
