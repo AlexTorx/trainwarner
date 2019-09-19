@@ -93,6 +93,10 @@ venv.bak/
 #PyCharm config
 .idea
 
+# Vim Swap
+*.py.swp
+*.swp
+
 # Spyder project settings
 .spyderproject
 .spyproject

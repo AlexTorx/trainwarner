@@ -1,6 +1,6 @@
--r requirements.txt
-ipdb
 pytest
-ipython
+pytest-cov
 flake8
-mccabe
+WebTest
+sphinx
+sphinxcontrib-httpdomain

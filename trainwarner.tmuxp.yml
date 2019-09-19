@@ -1,0 +1,21 @@
+session_name: 'trainwarner'
+windows:
+- focus: 'true'
+  layout: tiled 
+  shell_command_before:
+    - source venv/bin/activate
+  panes:
+  - focus: 'true'
+    shell_command: anyblok_interpreter -c app.dev.cfg
+  - make run-dev
+  window_name: trainwarner_app
+- layout: tiled 
+  shell_command_before:
+    - source venv/bin/activate
+  panes:
+  - focus: 'true'
+    shell_command: vim .
+  - git status
+  - make test
+  - make lint
+  window_name: trainwarner_dev
