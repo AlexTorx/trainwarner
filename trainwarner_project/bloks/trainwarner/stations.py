@@ -22,7 +22,14 @@ def update_or_create(registry) -> None:
 
         for station in stations:
             station_data = get_station_from_row(station)
-            registry.Station.insert(**station_data)
+
+            # Find a discriminant in order to choose between update and insert
+            station = registry.Station.query().filter_by(
+                    id=station_data.get('id')).one_or_none()
+            if station:
+                station.update(**station_data)
+            else:
+                registry.Station.insert(**station_data)
 
     logger.info("Finished populating station table.")
 
@@ -32,6 +39,7 @@ def get_station_from_row(station_data) -> dict:
        into Model.Station table."""
 
     return dict(
+            id=station_data[0],
             name=station_data[1],
             slug=station_data[2]
             )
