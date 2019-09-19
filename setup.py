@@ -36,6 +36,7 @@ requirements = [
     'Faker',
     'Babel',
     'anyblok_mixins',
+    'anyblok_postgres'
 ]
 
 test_requirements = [
