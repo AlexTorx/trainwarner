@@ -41,6 +41,7 @@ _CARDS = [
         )
     ]
 
+
 def update_or_create(registry, cards=[]):
 
     """This function aims at initializing reduction cards when installing or
