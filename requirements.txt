@@ -1,1 +1,2 @@
 trainline
+git+https://github.com/AnyBlok/anyblok_postgres.git#egg=anyblok_postgres
