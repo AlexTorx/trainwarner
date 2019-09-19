@@ -2,7 +2,7 @@
 """
 from anyblok.blok import Blok
 
-from . import reduction_cards
+from . import reduction_cards, stations
 
 
 class Trainwarner(Blok):
@@ -18,6 +18,7 @@ class Trainwarner(Blok):
         """
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
+        from .models import station  # noqa
 
     @classmethod
     def reload_declaration_module(cls, reload):
@@ -26,8 +27,10 @@ class Trainwarner(Blok):
         """
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
+        from .models import station  # noqa
         reload(reduction_card)
         reload(passenger)
+        reload(station)
 
     @classmethod
     def pyramid_load_config(cls, config):
@@ -39,6 +42,8 @@ class Trainwarner(Blok):
             self.install()
         else:
             reduction_cards.update_or_create(registry=self.registry)
+            stations.update_or_create(registry=self.registry)
 
     def install(self):
         reduction_cards.update_or_create(registry=self.registry)
+        stations.update_or_create(registry=self.registry)
