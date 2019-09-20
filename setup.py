@@ -55,6 +55,10 @@ setup(
     entry_points={
         'bloks': [
             'trainwarner=trainwarner_project.bloks.trainwarner:Trainwarner'
+            ],
+        'console_scripts': [
+            'anyblok_populate_stations='
+            'trainwarner_project.bloks.trainwarner.scripts:populate_stations'
             ]
     },
     include_package_data=True,
