@@ -2,6 +2,8 @@ from logging import getLogger
 import csv
 import os
 
+import urllib.request
+
 
 logger = getLogger(__name__)
 
@@ -56,3 +58,22 @@ def get_station_dict_from_row(station_data) -> dict:
             name=station_data[1],
             slug=station_data[2]
             )
+
+
+def update_station_file() -> None:
+
+    """This method is aimed at updating the file in data/stations.csv using
+       file at https://raw.githubusercontent.com/trainline-eu/stations/master/stations.csv
+    """
+
+    url = ('https://raw.githubusercontent.com/trainline-eu/stations/master/'
+           'stations.csv')
+
+    logger.info('Starting to retireve data from %s' % url)
+
+    here = os.path.abspath(os.path.dirname(__file__))
+    data_path = 'data/stations.csv'
+
+    urllib.request.urlretrieve(url, os.path.join(here, data_path))
+
+    logger.info('Finished retrieving data.')
