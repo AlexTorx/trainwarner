@@ -58,7 +58,10 @@ setup(
             ],
         'console_scripts': [
             'anyblok_populate_stations='
-            'trainwarner_project.bloks.trainwarner.scripts:populate_stations'
+            'trainwarner_project.bloks.trainwarner.scripts:populate_stations',
+            'anyblok_populate_reduction_cards='
+            'trainwarner_project.bloks.trainwarner.scripts'
+            ':populate_reduction_cards'
             ]
     },
     include_package_data=True,

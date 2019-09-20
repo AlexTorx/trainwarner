@@ -5,6 +5,7 @@ from anyblok.release import version
 from logging import getLogger
 
 from .stations import update_or_create as stations_populate
+from .reduction_cards import update_or_create as reduction_cards_populate
 
 
 Configuration.add_application_properties(
@@ -25,6 +26,24 @@ Configuration.add_application_properties(
     table."""
 )
 
+Configuration.add_application_properties(
+    'populate_reduction_cards',
+    [
+        'logging'
+    ],
+    prog='Trainwarner anyblok_populate_reduction_cards, version %r' % version,
+    description="""Trainwarner populate_reduction_cards script.
+    This script can be used to perform a complete population of
+    Model.ReductionCard table.
+
+    This is mainly intented for development purposes, in case of update of
+    model Model.ReductionCard, in order to be able to run a full population
+    with having to update completely database.
+
+    [NOTE] This can be ran on production server to update Model.ReductionCard
+    table."""
+)
+
 
 def populate_stations():
 
@@ -42,3 +61,21 @@ def populate_stations():
     registry = anyblok.start(
             'populate_stations', argparse_groups=['logging'])
     stations_populate(registry=registry)
+
+
+def populate_reduction_cards():
+
+    """This is the script called by using anyblok_populate_reduction_cards -c app.dev.cfg
+    This script can be used to perform a complete population of
+    Model.ReductionCard
+
+    This is mainly intented for development purposes, in case of update of
+    model Model.ReductionCard, in order to be able to run a full population with
+    having to update completely database.
+
+    [NOTE] This can be ran on production server to update Model.ReductionCard
+    table."""
+
+    registry = anyblok.start(
+            'populate_reduction_cards', argparse_groups=['logging'])
+    reduction_cards_populate(registry=registry)
