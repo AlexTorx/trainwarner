@@ -10,7 +10,7 @@ class Trainwarner(Blok):
     """
     version = "0.1.0"
     author = "Alexis Tourneux"
-    required = ['anyblok-core', 'anyblok-mixins']
+    required = ['anyblok-core', 'anyblok-mixins', 'anyblok-workflow']
 
     @classmethod
     def import_declaration_module(cls):
@@ -19,6 +19,7 @@ class Trainwarner(Blok):
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
         from .models import station  # noqa
+        from .models import journey_wish  # noqa
 
     @classmethod
     def reload_declaration_module(cls, reload):
@@ -28,9 +29,11 @@ class Trainwarner(Blok):
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
         from .models import station  # noqa
+        from .models import journey_wish  # noqa
         reload(reduction_card)
         reload(passenger)
         reload(station)
+        reload(journey_wish)
 
     @classmethod
     def pyramid_load_config(cls, config):
