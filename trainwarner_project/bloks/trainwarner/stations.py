@@ -2,7 +2,9 @@ from logging import getLogger
 import csv
 import os
 
+
 logger = getLogger(__name__)
+
 
 def update_or_create(registry) -> None:
 
@@ -32,6 +34,7 @@ def update_or_create(registry) -> None:
                 registry.Station.insert(**station_data)
 
     logger.info("Finished populating station table.")
+
 
 def get_station_from_row(station_data) -> dict:
 
