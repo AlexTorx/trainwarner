@@ -63,7 +63,8 @@ def get_station_dict_from_row(station_data) -> dict:
 def update_station_file() -> None:
 
     """This method is aimed at updating the file in data/stations.csv using
-       file at https://raw.githubusercontent.com/trainline-eu/stations/master/stations.csv
+       file at https://raw.githubusercontent.com/trainline-eu/stations/master/
+       stations.csv
     """
 
     url = ('https://raw.githubusercontent.com/trainline-eu/stations/master/'
