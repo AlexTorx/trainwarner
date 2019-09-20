@@ -49,16 +49,25 @@ def update_or_create(registry, cards=[]):
 
     logger.info("Starting to import reduction cards.")
 
+    created = 0
+    updated = 0
+
     if not cards:
         cards = _CARDS
 
     for card in cards:
-        exists = registry.ReductionCard.query().filter_by(
+        existing = registry.ReductionCard.query().filter_by(
                 code=card.get('code')).one_or_none()
 
-        if not exists:
+        if not existing:
             registry.ReductionCard.insert(**card)
+            created += 1
         else:
-            exists.update(**card)
+            existing.update(**card)
+            updated += 1
 
-    logger.info("Reduction cards succesfully imported.")
+    logger.info(
+            ("Reduction cards succesfully imported.\n\tCreated cards : %d"
+             "\n\tUpdated cards : %d" % (created, updated)
+             )
+            )
