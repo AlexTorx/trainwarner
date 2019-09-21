@@ -21,6 +21,12 @@ install:
   - pip install --upgrade pip wheel setuptools
   - pip install -r requirements.test.txt
 
+env:
+  global:
+    - ANYBLOK_DATABASE_NAME=travis_ci_test
+    - ANYBLOK_DATABASE_DRIVER=postgresql
+    - ANYBLOK_DATABASE_USER=postgres
+
 before_script:
   - psql -c 'create database trainwarner_test;' -U postgres
   - make setup-tests
