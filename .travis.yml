@@ -20,6 +20,7 @@ services:
 install:
   - pip install --upgrade pip wheel setuptools
   - pip install -r requirements.test.txt
+  - pip install coveralls
 
 before_script:
   - (dropdb trainwarner_test && make setup-tests) || make setup-tests
@@ -27,3 +28,6 @@ before_script:
 script:
   - make lint
   - make test
+
+after_success:
+  - coveralls
