@@ -255,48 +255,72 @@ if __name__ == '__main__':
     alexis_passenger = Passenger('05/09/1967')
     alexis_passenger.add_special_card(TGVMAX, 'HC800266305')
 
-    departure = 'Paris'
-    arrival = 'Lille'
-
-    now = datetime.now()
+    wishes = []
 
     from_date = datetime(
-        year=now.year, month=now.month, day=now.day, hour=18, minute=0, second=0).astimezone() + timedelta(days=11)
+        year=2019, month=9, day=22, hour=13, minute=0, second=0).astimezone()
     to_date = datetime(
-        year=now.year, month=now.month, day=now.day, hour=23, minute=59, second=59).astimezone() + timedelta(days=11)
-
+        year=from_date.year, month=from_date.month, day=from_date.day, hour=23, minute=59, second=59).astimezone()
     transportation_mean = 'train'
+    wish = JourneyWish(departure="Lille", arrival="Paris", from_date=from_date, to_date=to_date,
+                       transportation_mean=transportation_mean, passengers=alexis_passenger)
+    wishes.append(wish)
 
-    previous_folders = []
+    from_date = datetime(
+        year=2019, month=9, day=27, hour=17, minute=0, second=0).astimezone()
+    to_date = datetime(
+        year=from_date.year, month=from_date.month, day=from_date.day, hour=23, minute=59, second=59).astimezone()
+    transportation_mean = 'train'
+    wish = JourneyWish(departure="Paris", arrival="Lille", from_date=from_date, to_date=to_date,
+                       transportation_mean=transportation_mean, passengers=alexis_passenger)
+    wishes.append(wish)
+
+    from_date = datetime(
+        year=2019, month=9, day=29, hour=13, minute=0, second=0).astimezone()
+    to_date = datetime(
+        year=from_date.year, month=from_date.month, day=from_date.day, hour=23, minute=59, second=59).astimezone()
+    transportation_mean = 'train'
+    wish = JourneyWish(departure="Lille", arrival="Paris", from_date=from_date, to_date=to_date,
+                       transportation_mean=transportation_mean, passengers=alexis_passenger)
+    wishes.append(wish)
+
+    print(wishes)
+
+    previous_folders = [0]*len(wishes)
+    print(previous_folders)
 
     while True:
-        try:
-            print("Batch at %s" % datetime.now().astimezone().isoformat())
-            print(
-                ('Starting query with parameters :'
-                 '\n\tDeparture : %s\n\tArrival : %s\n\tFrom Date : %s'
-                 '\n\tTo Date : %s\n\tTransportation Mean : %s' % (
-                    departure, arrival, from_date,
-                    to_date, transportation_mean
-                    )
-                 )
-            )
+        print("Batch at %s" % datetime.now().astimezone().isoformat())
+        for i in range(len(wishes)):
 
-            wish = JourneyWish(departure=departure, arrival=arrival, from_date=from_date, to_date=to_date,
-                               transportation_mean=transportation_mean, passengers=alexis_passenger)
-            folders = wish.search_matching_journeys()
+            try:
+                wish = wishes[i]
 
-            if folders and folders != previous_folders:
-                print("Found folders : %s" % folders)
-                EmailSender(receiver="tourneuxalexis@gmail.com", sender="test@trainwarner.com", smtp_host="smtp.gmail.com",
-                            smtp_port=587, smtp_login="trainwarner.info@gmail.com").send(data=folders)
-            elif folders == previous_folders:
-                print("No more matching found")
-            else:
-                print("Nothing found")
+                print(
+                    ('Starting query with parameters :'
+                     '\n\tDeparture : %s\n\tArrival : %s\n\tFrom Date : %s'
+                     '\n\tTo Date : %s\n\tTransportation Mean : %s' % (
+                         wish.departure, wish.arrival, wish.from_date,
+                         wish.to_date, wish.transportation_mean
+                     )
+                     )
+                )
 
-            previous_folders = folders
-        except Exception:
-            pass
+                folders = wish.search_matching_journeys()
 
-        time.sleep(60*30)
+                if folders and folders != previous_folders[i]:
+                    print("Found folders : %s" % folders)
+                    EmailSender(receiver="tourneuxalexis@gmail.com", sender="test@trainwarner.com", smtp_host="smtp.gmail.com",
+                                smtp_port=587, smtp_login="trainwarner.info@gmail.com").send(data=folders)
+                elif folders == previous_folders[i]:
+                    print("No more matching found")
+                else:
+                    print("Nothing found")
+
+                previous_folders[i] = folders
+            except Exception as exception:
+                print(exception)
+
+        print("End of batch at %s" % datetime.now().astimezone().isoformat())
+
+        time.sleep(60*10)
