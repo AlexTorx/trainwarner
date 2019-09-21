@@ -27,5 +27,5 @@ class TestStationModel:
 
         assert registry.Station.query().count() == current_count + 1
         assert station.id == station_dict.get('id')
-        assert station.name == station.get('name')
-        assert station.slug == station.get('slug')
+        assert station.name == station_dict.get('name')
+        assert station.slug == station_dict.get('slug')
