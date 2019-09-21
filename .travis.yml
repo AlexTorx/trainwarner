@@ -20,3 +20,6 @@ services:
 install:
   - pip install --upgrade pip wheel setuptools
   - pip install -r requirements.test.txt
+
+script:
+  - (dropdb trainwarner_test && make setup-tests) || make setup-tests
