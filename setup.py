@@ -25,7 +25,7 @@ requirements = [
     'anyblok',
     'psycopg2-binary',
     'marshmallow-sqlalchemy<=0.17.0',
-    'anyblok_marshmallow',
+    'anyblok_marshmallow<=3.0.0rc5',
     'anyblok_pyramid',
     'pyramid_jinja2',
     'anyblok_pyramid_beaker',
