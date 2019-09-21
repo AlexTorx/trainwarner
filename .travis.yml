@@ -1,1 +1,22 @@
 language: python
+sudo: true
+addons:
+  postgresql: "11.5"
+
+python:
+  - "3.5"
+  - "3.6"
+  - "3.6-dev"  # 3.6 development branch
+  - "3.7-dev"  # 3.7 development branch
+  - "3.7"
+  - "nightly"
+
+virtualenv:
+  system_site_package: false
+
+services:
+  - postgresql
+
+install:
+  - pip install --upgrade pip wheel setuptools
+  - pip install -r requirements.test.txt
