@@ -1,2 +1,3 @@
 trainline
+marshmallow==3.0.0rc5
 git+https://github.com/AnyBlok/anyblok_postgres.git#egg=anyblok_postgres
