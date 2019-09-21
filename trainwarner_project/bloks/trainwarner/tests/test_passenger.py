@@ -7,7 +7,7 @@ class TestPassengerModel:
 
     """ Test model Model.Passenger"""
 
-    def test_insert_default(self):
+    def test_insert_default(self, rollback_registry):
 
         """This test aims at checking that records can be properly inserted
            into Model.Passenger table."""

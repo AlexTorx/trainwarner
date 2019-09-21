@@ -6,7 +6,7 @@ class TestStationModel:
 
     """ Test model Model.Station"""
 
-    def test_insert_default(self):
+    def test_insert_default(self, rollback_registry):
 
         """This test aims at checking that records can be properly inserted
            into Model.Station table."""
