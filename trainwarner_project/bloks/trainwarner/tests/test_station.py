@@ -18,10 +18,14 @@ class TestStationModel:
         # Assuming that Model.Station table is already filled with data, set
         # unused id
         station_dict = dict(
-            id=100000
+            id=100000,
+            name='station name',
+            slug='station-slug'
         )
 
         station = registry.Station.insert(**station_dict)
 
         assert registry.Station.query().count() == current_count + 1
         assert station.id == station_dict.get('id')
+        assert station.name == station.get('name')
+        assert station.slug == station.get('slug')

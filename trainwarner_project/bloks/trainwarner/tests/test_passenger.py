@@ -23,4 +23,4 @@ class TestPassengerModel:
         passenger = registry.Passenger.insert(**passenger_dict)
 
         assert registry.Passenger.query().count() == current_count + 1
-        assert station.birthdate == passenger_dict.get('birthdate')
+        assert passenger.birthdate == passenger_dict.get('birthdate')
