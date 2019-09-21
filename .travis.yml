@@ -21,5 +21,9 @@ install:
   - pip install --upgrade pip wheel setuptools
   - pip install -r requirements.test.txt
 
+before_script:
+  - psql -c 'create database trainwarner_test;' -U postgres
+  - make setup-tests
+
 script:
-  - (dropdb trainwarner_test && make setup-tests) || make setup-tests
+  - make test
