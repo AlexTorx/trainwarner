@@ -1,3 +1,12 @@
+.. image:: https://travis-ci.org/AlexTorx/trainwarner.svg?branch=master
+    :target: https://travis-ci.org/AlexTorx/trainwarner
+    :alt: Build Status
+
+.. image:: https://coveralls.io/repos/github/AlexTorx/trainwarner/badge.svg?branch=master
+	:target: https://coveralls.io/github/AlexTorx/trainwarner?branch=master
+	:alt: Code Coverage
+
+
 ===========
 TrainWarner
 ===========
