@@ -1,6 +1,6 @@
 import pytest
 from trainwarner_project.bloks.trainwarner.stations import (
-    get_station_dict
+    get_station_dict_from_row
 )
 
 
@@ -11,12 +11,13 @@ class TestStationScript:
 
     def test_get_station_dict(self):
 
-        """This test aims at checking that function get_station_dict can be
-           used properly and returns proper data representing station"""
+        """This test aims at checking that function get_station_dict_from_row
+           can be used properly and returns proper data representing stationi
+        """
 
         input_list = [123456, 'Lille-Flandres', 'lille-flandres']
 
-        data_dict = get_station_dict(input_list)
+        data_dict = get_station_dict_from_row(input_list)
 
         assert data_dict.get('id') == 123456
         assert data_dict.get('name') == 'Lille-Flandres'
