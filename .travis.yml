@@ -30,7 +30,7 @@ script:
   - make lint
   - make test
   - make documentation
-  - travis-sphinx build
+  # - travis-sphinx build
 
 after_success:
   - coveralls
