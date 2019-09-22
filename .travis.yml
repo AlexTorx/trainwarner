@@ -21,6 +21,7 @@ install:
   - pip install --upgrade pip wheel setuptools
   - pip install -r requirements.test.txt
   - pip install coveralls
+  - pip install travis-sphinx
 
 before_script:
   - (dropdb trainwarner_test && make setup-tests) || make setup-tests
@@ -28,6 +29,9 @@ before_script:
 script:
   - make lint
   - make test
+  - make documentation
+  - travis-sphinx build
 
 after_success:
   - coveralls
+  - travis-sphinx deploy
