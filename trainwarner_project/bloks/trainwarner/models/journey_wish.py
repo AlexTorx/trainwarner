@@ -105,11 +105,11 @@ class JourneyWish(Mixin.UuidColumn, Mixin.TrackModel, Mixin.WorkFlow):
 
     def check_state(self):
 
-        """This method is aimed ta being used in order to automatically set
+        """This method is aimed at being used in order to automatically set
            workflow state, depending on record attributes."""
 
         if self.state == 'pending':
-            # If wish is pending, check is active_date is set
+            # If wish is pending, check is activation_date is set
             if self.activation_date and self.activation_date <= date.today():
                 self.state_to('running')
 
