@@ -54,7 +54,15 @@ class TestStationScript:
 
         registry = rollback_registry
 
-        # Inject data extracted from ../data/stations.csv
-        stations_update_or_create(registry=registry)
+        # Inject data extracted from data/tests/stations_tests.csv
+        stations_update_or_create(registry=registry,
+                                  path='data/tests/stations_test.csv')
 
-        assert registry.Station.query().count() > 0
+        after_count = registry.Station.query().count()
+        assert after_count > 0
+
+        # Re-inject data into Model.Station table
+        stations_update_or_create(registry=registry,
+                                  path='data/tests/stations_test.csv')
+
+        assert registry.Station.query().count() == after_count
