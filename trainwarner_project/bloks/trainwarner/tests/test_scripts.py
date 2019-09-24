@@ -66,3 +66,15 @@ class TestStationScript:
                                   path='data/tests/stations_test.csv')
 
         assert registry.Station.query().count() == after_count
+
+    def test_update_or_create_stations_empty_path(self, rollback_registry):
+
+        """This test aims at checking that the update_or_create method from
+           stations_script is not executed if no path is provided."""
+
+        registry = rollback_registry
+
+        count = registry.Station.query().count()
+
+        stations_update_or_create(registry=registry)
+        assert registry.Station.query().count() == count
