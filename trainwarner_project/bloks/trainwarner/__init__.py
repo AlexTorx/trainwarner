@@ -1,6 +1,7 @@
 """Blok declaration example
 """
 from anyblok.blok import Blok
+from anyblok.config import Configuration
 
 from . import reduction_cards, stations
 
@@ -45,8 +46,14 @@ class Trainwarner(Blok):
             self.install()
         else:
             reduction_cards.update_or_create(registry=self.registry)
-            stations.update_or_create(registry=self.registry)
+            stations_path = Configuration.get('stations_data')
+            stations.update_or_create(registry=self.registry,
+                                      path=stations_path
+                                      )
 
     def install(self):
         reduction_cards.update_or_create(registry=self.registry)
-        stations.update_or_create(registry=self.registry)
+        stations_path = Configuration.get('stations_data')
+        stations.update_or_create(registry=self.registry,
+                                  path=stations_path
+                                  )

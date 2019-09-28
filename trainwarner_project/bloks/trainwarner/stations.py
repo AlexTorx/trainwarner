@@ -8,15 +8,18 @@ import urllib.request
 logger = getLogger(__name__)
 
 
-def update_or_create(registry) -> None:
+def update_or_create(registry, path=None) -> None:
 
     """This method is aimed at updating or creating records in database for
        model Model.Station, from csv file."""
 
+    if not path:
+        logger.warn('No path provided. Model.Station will not be populated')
+        return
+
     logger.info("Start populating station table from CSV file.")
 
     here = os.path.abspath(os.path.dirname(__file__))
-    path = 'data/stations.csv'
 
     with open(os.path.join(here, path), 'r', encoding='utf-8') as CSVfile:
         stations = csv.reader(CSVfile, delimiter=';')
