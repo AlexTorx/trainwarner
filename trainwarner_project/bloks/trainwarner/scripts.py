@@ -79,7 +79,7 @@ def populate_stations():
     registry = anyblok.start(
             'populate_stations', argparse_groups=['logging'])
     file_path = Configuration.get('stations_data')
-    stations_populate(registry=registry, path=path)
+    stations_populate(registry=registry, path=file_path)
 
 
 def populate_reduction_cards():
