@@ -75,7 +75,7 @@ lint: ## check style with flake8
 	flake8 trainwarner_project/bloks
 
 test: ## run anyblok nose tests
-	ANYBLOK_CONFIG_FILE=app.test.cfg py.test -ra -vv -s --cov-report term-missing --cov=trainwarner_project -W ignore::DeprecationWarning trainwarner_project/bloks/
+	ANYBLOK_CONFIG_FILE=app.test.cfg py.test --show-progress -ra -vv -s --cov-report term-missing --cov=trainwarner_project -W ignore::DeprecationWarning trainwarner_project/bloks/
 
 documentation: ## generate documentation
 	anyblok_doc -c app.test.cfg --doc-format RST --doc-output doc/source/apidoc.rst
