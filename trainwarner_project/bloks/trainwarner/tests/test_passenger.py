@@ -2,7 +2,7 @@ import pytest
 from datetime import date
 
 
-@pytest.mark.usefixtures('rollback_registry')
+@pytest.mark.usefixtures("rollback_registry")
 class TestPassengerModel:
 
     """ Test model Model.Passenger"""
@@ -16,11 +16,9 @@ class TestPassengerModel:
 
         current_count = registry.Passenger.query().count()
 
-        passenger_dict = dict(
-            birthdate=date.today()
-        )
+        passenger_dict = dict(birthdate=date.today())
 
         passenger = registry.Passenger.insert(**passenger_dict)
 
         assert registry.Passenger.query().count() == current_count + 1
-        assert passenger.birthdate == passenger_dict.get('birthdate')
+        assert passenger.birthdate == passenger_dict.get("birthdate")

@@ -7,7 +7,7 @@ Mixin = Declarations.Mixin
 
 
 @register(Model)
-class Station():
+class Station:
 
     """This model has Model.Station as a namespace. It is intented for storing
        known stations extracted from a stations.csv file."""

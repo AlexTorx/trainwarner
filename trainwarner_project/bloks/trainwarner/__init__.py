@@ -9,9 +9,10 @@ from . import reduction_cards, stations
 class Trainwarner(Blok):
     """Trainwarner's Blok class definition
     """
+
     version = "0.1.0"
     author = "Alexis Tourneux"
-    required = ['anyblok-core', 'anyblok-mixins', 'anyblok-workflow']
+    required = ["anyblok-core", "anyblok-mixins", "anyblok-workflow"]
 
     @classmethod
     def import_declaration_module(cls):
@@ -31,6 +32,7 @@ class Trainwarner(Blok):
         from .models import passenger  # noqa
         from .models import station  # noqa
         from .models import journey_wish  # noqa
+
         reload(reduction_card)
         reload(passenger)
         reload(station)
@@ -46,14 +48,12 @@ class Trainwarner(Blok):
             self.install()
         else:
             reduction_cards.update_or_create(registry=self.registry)
-            stations_path = Configuration.get('stations_data')
-            stations.update_or_create(registry=self.registry,
-                                      path=stations_path
-                                      )
+            stations_path = Configuration.get("stations_data")
+            stations.update_or_create(
+                registry=self.registry, path=stations_path
+            )
 
     def install(self):
         reduction_cards.update_or_create(registry=self.registry)
-        stations_path = Configuration.get('stations_data')
-        stations.update_or_create(registry=self.registry,
-                                  path=stations_path
-                                  )
+        stations_path = Configuration.get("stations_data")
+        stations.update_or_create(registry=self.registry, path=stations_path)
