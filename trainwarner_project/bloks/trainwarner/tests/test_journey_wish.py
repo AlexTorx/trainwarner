@@ -1,5 +1,4 @@
 import pytest
-from datetime import date
 
 
 @pytest.mark.usefixtures('rollback_registry')
@@ -13,7 +12,9 @@ class TestJourneyWishModel:
            into Model.JourneyWish table."""
 
         registry = rollback_registry
-        pass
+
+        # TODO : add user table and add an user to model
+        registry.JourneyWish.insert()
 
     def test_get_workflow_definition(self, rollback_registry):
 
@@ -22,8 +23,9 @@ class TestJourneyWishModel:
 
         workflow = rollback_registry.JourneyWish.get_workflow_definition()
 
-        expected_states = ['draft', 'pending', 'running', 'expired',
-            'cancelled']
+        expected_states = [
+                'draft', 'pending', 'running', 'expired', 'cancelled'
+                ]
         assert len(expected_states) == len(workflow.keys())
         for state in workflow.keys():
             assert state in expected_states
