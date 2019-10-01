@@ -1,5 +1,6 @@
 pytest
 pytest-cov
+pytest-progress
 flake8
 WebTest
 sphinx

@@ -55,7 +55,8 @@ setup(
     packages=find_packages(),
     entry_points={
         'bloks': [
-            'trainwarner=trainwarner_project.bloks.trainwarner:Trainwarner'
+            'trainwarner=trainwarner_project.bloks.trainwarner:Trainwarner',
+            'frontend=trainwarner_project.bloks.frontend:Frontend'
             ],
         'console_scripts': [
             'anyblok_populate_stations='

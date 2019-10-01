@@ -50,7 +50,7 @@ class JourneyWish(Mixin.UuidColumn, Mixin.TrackModel, Mixin.WorkFlow):
     from_date = DateTime(label="Earlier Departure Date", nullable=True)
     end_date = DateTime(label="Latest Departure Date", nullable=True)
     activation_date = Date(label="Activation Date",
-                           nullable=False,
+                           nullable=True,
                            default=date.today
                            )
 
