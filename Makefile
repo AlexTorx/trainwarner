@@ -74,6 +74,9 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 trainwarner_project/bloks
 
+black: ## autoformat code
+	black \trainwarner_project --line-length 79
+
 test: ## run anyblok nose tests
 	ANYBLOK_CONFIG_FILE=app.test.cfg py.test --show-progress -ra -vv -s --cov-report term-missing --cov=trainwarner_project -W ignore::DeprecationWarning trainwarner_project/bloks/
 

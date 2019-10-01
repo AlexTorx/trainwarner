@@ -6,4 +6,7 @@ ipython
 # Load tmuxp for multi panels displaying
 tmuxp
 
+# Black code formatter
+black
+
 -e git+https://github.com/AnyBlok/anyblok_postgres.git#egg=anyblok_postgres
