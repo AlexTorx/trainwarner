@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.usefixtures('rollback_registry')
+@pytest.mark.usefixtures("rollback_registry")
 class TestJourneyWishModel:
 
     """ Test model Model.JourneyWish"""
@@ -24,8 +24,12 @@ class TestJourneyWishModel:
         workflow = rollback_registry.JourneyWish.get_workflow_definition()
 
         expected_states = [
-                'draft', 'pending', 'running', 'expired', 'cancelled'
-                ]
+            "draft",
+            "pending",
+            "running",
+            "expired",
+            "cancelled",
+        ]
         assert len(expected_states) == len(workflow.keys())
         for state in workflow.keys():
             assert state in expected_states

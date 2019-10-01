@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.usefixtures('rollback_registry')
+@pytest.mark.usefixtures("rollback_registry")
 class TestReductionCardModel:
 
     """ Test model Model.ReductionCard"""
@@ -15,13 +15,10 @@ class TestReductionCardModel:
 
         current_count = registry.ReductionCard.query().count()
 
-        card_dict = dict(
-            name='My test reduction Card',
-            code='test.Card'
-        )
+        card_dict = dict(name="My test reduction Card", code="test.Card")
 
         card = registry.ReductionCard.insert(**card_dict)
 
         assert registry.ReductionCard.query().count() == current_count + 1
-        assert card.name == card_dict.get('name')
-        assert card.code == card_dict.get('code')
+        assert card.name == card_dict.get("name")
+        assert card.code == card_dict.get("code")

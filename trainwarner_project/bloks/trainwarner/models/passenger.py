@@ -16,9 +16,9 @@ class Passenger(Mixin.UuidColumn):
     birthdate = Date(label="Birthdate", nullable=True)
 
     reduction_card = Many2One(
-            label="Reduction Card",
-            model=Model.ReductionCard,
-            one2many="passengers"
-            )
+        label="Reduction Card",
+        model=Model.ReductionCard,
+        one2many="passengers",
+    )
 
     properties = Jsonb(label="properties")
