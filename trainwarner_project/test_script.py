@@ -220,7 +220,8 @@ class EmailSender:
             server.login(self.smtp_login, "Mayer0404")
 
         else:
-            server = smtplib.SMTP(host=self.smtp_host, port=25)
+            # Perform basic SMTP connection
+            server = smtplib.SMTP(host=self.smtp_host, port=self.smtp_port)
 
             server.connect(self.smtp_host, self.smtp_port)
             server.helo()
