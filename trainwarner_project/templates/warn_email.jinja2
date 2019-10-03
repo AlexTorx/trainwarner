@@ -12,9 +12,10 @@
             <section>
                 {% for folder in folders %}
                 <div class="boxed">
-                    <p>Journey : {{ '%02d'|format(folder.departure_date_obj.day) }}/{{ '%02d'|format(folder.departure_date_obj.month) }}</p>
-                    <p>{{ stations.get(folder.departure_station_id) }} at {{ '%02d'|format(folder.departure_date_obj.hour) }}:{{ '%02d'|format(folder.departure_date_obj.minute) }} -> {{ stations.get(folder.arrival_station_id) }} at {{ '%02d'|format(folder.arrival_date_obj.hour) }}:{{ '%02d'|format(folder.arrival_date_obj.minute) }}</p>
-                    <p>Price : {{ folder.price }} {{ folder.currency }}</p>
+                    <ul>
+                        <li>Journey : {{ '%02d'|format(folder.departure_date_obj.day) }}/{{ '%02d'|format(folder.departure_date_obj.month) }}</li>
+                        <li>{{ stations.get(folder.departure_station_id) }} at {{ '%02d'|format(folder.departure_date_obj.hour) }}:{{ '%02d'|format(folder.departure_date_obj.minute) }} -> {{ stations.get(folder.arrival_station_id) }} at {{ '%02d'|format(folder.arrival_date_obj.hour) }}:{{ '%02d'|format(folder.arrival_date_obj.minute) }}</li>
+                        <li>Price : {{ folder.price }} {{ folder.currency }}</li>
                 </div>
                 {% endfor %}
             </section>
