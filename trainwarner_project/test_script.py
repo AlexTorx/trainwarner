@@ -175,7 +175,7 @@ class Warner(Thread):
 
 class EmailSender:
 
-    def __init__(self, receiver, sender, smtp_host, smtp_port=None, smtp_login=None):
+    def __init__(self, receiver, sender, smtp_host, smtp_port=None, smtp_login=None, smtp_password=None):
 
         if isinstance(receiver, str):
             if ',' in receiver:
@@ -200,6 +200,7 @@ class EmailSender:
                 raise TypeError("SMTP port should be a valid int. Found %s instead." % type(smtp_port))
 
         self.smtp_login = smtp_login
+        self.smtp_password = smtp_password
 
     def send(self, data):
 
@@ -209,7 +210,7 @@ class EmailSender:
 
             server.starttls()
             server.ehlo()
-            server.login(self.smtp_login, "Mayer0404")
+            server.login(self.smtp_login, self.smtp_password)
 
         elif self.smtp_port == 465:
             # enables SSL connection
