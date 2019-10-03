@@ -217,7 +217,7 @@ class EmailSender:
             server = smtplib.SMTP_SSL(host=self.smtp_host, port=self.smtp_port)
 
             server.ehlo()
-            server.login(self.smtp_login, "Mayer0404")
+            server.login(self.smtp_login, self.smtp_password)
 
         else:
             # Perform basic SMTP connection
