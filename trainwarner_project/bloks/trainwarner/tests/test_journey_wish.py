@@ -17,6 +17,41 @@ class TestJourneyWishModel:
         # TODO : add user table and add an user to model
         registry.JourneyWish.insert()
 
+    def test_insert_journey_wish(
+        self,
+        rollback_registry,
+        lille_flandres_station,
+        paris_nord_station,
+        passenger_1,
+    ):
+
+        """This test is intented at checking that data can be inserted into
+           a Model.JourneyWish database record."""
+
+        registry = rollback_registry
+
+        journey_wish = registry.JourneyWish.insert(
+            departure=lille_flandres_station,
+            arrival=paris_nord_station,
+            from_date=datetime(year=2019, month=10, day=5, hour=12, minute=30),
+            end_date=datetime(year=2019, month=10, day=5, hour=14),
+            activation_date=date.today(),
+        )
+
+        journey_wish.passengers.append(passenger_1)
+
+        assert journey_wish.departure == lille_flandres_station
+        assert journey_wish.arrival == paris_nord_station
+        assert journey_wish.from_date.replace(tzinfo=None) == datetime(
+            year=2019, month=10, day=5, hour=12, minute=30
+        )
+        assert journey_wish.end_date.replace(tzinfo=None) == datetime(
+            year=2019, month=10, day=5, hour=14
+        )
+        assert journey_wish.activation_date == date.today()
+
+        assert journey_wish.passengers == [passenger_1]
+
     def test_get_workflow_definition(self, rollback_registry):
 
         """This test aims at checking the workflow defined in Model.Offer
