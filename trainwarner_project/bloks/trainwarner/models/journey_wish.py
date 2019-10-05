@@ -51,9 +51,7 @@ class JourneyWish(Mixin.UuidColumn, Mixin.TrackModel, Mixin.WorkFlow):
 
     from_date = DateTime(label="Earlier Departure Date", nullable=True)
     end_date = DateTime(label="Latest Departure Date", nullable=True)
-    activation_date = Date(
-        label="Activation Date", nullable=True, default=date.today
-    )
+    activation_date = Date(label="Activation Date", nullable=True)
 
     passengers = Many2Many(
         model=Model.Passenger,
@@ -95,10 +93,14 @@ class JourneyWish(Mixin.UuidColumn, Mixin.TrackModel, Mixin.WorkFlow):
             "cancelled": {"apply_change": "deactivate"},
         }
 
-    def activate(self):
+    def activate(self, from_state):
+
+        if from_state == "draft" and not self.activation_date:
+            self.activation_date = date.today()
+
         self.active = True
 
-    def deactivate(self):
+    def deactivate(self, from_state):
         self.active = False
 
     def check_state(self):
