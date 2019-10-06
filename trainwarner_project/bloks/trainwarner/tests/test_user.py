@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.usefixtures('rollback_registry')
+@pytest.mark.usefixtures("rollback_registry")
 class TestUser:
 
     """This test class is intented at tested Model.User inherited from AnyBlok
@@ -15,13 +15,16 @@ class TestUser:
         registry = rollback_registry
 
         user = registry.User.insert(
-                login="test_login", first_name="John", last_name="Doe",
-                email="john.doe@gmail.com")
+            login="test_login",
+            first_name="John",
+            last_name="Doe",
+            email="john.doe@gmail.com",
+        )
 
-        assert user.name == 'John DOE'
+        assert user.name == "John DOE"
 
 
-@pytest.mark.usefixtures('rollback_registry')
+@pytest.mark.usefixtures("rollback_registry")
 class TestUserCredentials:
 
     """This test class is intented at tested Model.User.CredentialStore from
@@ -35,7 +38,8 @@ class TestUserCredentials:
         registry = rollback_registry
 
         credentials = registry.User.CredentialStore(
-                login=user_1.login, password="test")
+            login=user_1.login, password="test"
+        )
 
         assert credentials.login == user_1.login
         assert credentials.password == "test"

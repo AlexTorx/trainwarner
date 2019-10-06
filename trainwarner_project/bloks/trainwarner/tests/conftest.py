@@ -45,5 +45,5 @@ def user_1(rollback_registry):
         login="user_1",
         first_name="John",
         last_name="Doe",
-        email="john.doe@gmail.com"
+        email="john.doe@gmail.com",
     )
