@@ -12,12 +12,20 @@ class Trainwarner(Blok):
 
     version = "0.1.0"
     author = "Alexis Tourneux"
-    required = ["anyblok-core", "anyblok-mixins", "anyblok-workflow"]
+    required = [
+        "anyblok-core",
+        "anyblok-mixins",
+        "anyblok-workflow",
+        "auth-password",
+        "authorization",
+    ]
 
     @classmethod
     def import_declaration_module(cls):
         """Python module to import in the given order at start-up
         """
+
+        from .models import user  # noqa
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
         from .models import station  # noqa
@@ -28,11 +36,14 @@ class Trainwarner(Blok):
         """Python module to import while reloading server (ie when
         adding Blok at runtime
         """
+
+        from .models import user  # noqa
         from .models import reduction_card  # noqa
         from .models import passenger  # noqa
         from .models import station  # noqa
         from .models import journey_wish  # noqa
 
+        reload(user)
         reload(reduction_card)
         reload(passenger)
         reload(station)

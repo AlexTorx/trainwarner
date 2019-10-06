@@ -7,7 +7,7 @@ class TestJourneyWishModel:
 
     """ Test model Model.JourneyWish"""
 
-    def test_insert_default(self, rollback_registry):
+    def test_insert_default(self, rollback_registry, user_1):
 
         """This test aims at checking that records can be properly inserted
            into Model.JourneyWish table."""
@@ -15,7 +15,7 @@ class TestJourneyWishModel:
         registry = rollback_registry
 
         # TODO : add user table and add an user to model
-        registry.JourneyWish.insert()
+        registry.JourneyWish.insert(user=user_1)
 
     def test_insert_journey_wish(
         self,
@@ -23,6 +23,7 @@ class TestJourneyWishModel:
         lille_flandres_station,
         paris_nord_station,
         passenger_1,
+        user_1,
     ):
 
         """This test is intented at checking that data can be inserted into
@@ -36,6 +37,7 @@ class TestJourneyWishModel:
             from_date=datetime(year=2019, month=10, day=5, hour=12, minute=30),
             end_date=datetime(year=2019, month=10, day=5, hour=14),
             activation_date=date.today(),
+            user=user_1,
         )
 
         journey_wish.passengers.append(passenger_1)
@@ -51,6 +53,7 @@ class TestJourneyWishModel:
         assert journey_wish.activation_date == date.today()
 
         assert journey_wish.passengers == [passenger_1]
+        assert journey_wish.user == user_1
 
     def test_get_workflow_definition(self, rollback_registry):
 
@@ -71,14 +74,14 @@ class TestJourneyWishModel:
         for state in workflow.keys():
             assert state in expected_states
 
-    def test_activate_journey_wish(self, rollback_registry):
+    def test_activate_journey_wish(self, rollback_registry, user_1):
 
         """This test is aimed at checking that the activate function is working
            as intented."""
 
         registry = rollback_registry
 
-        journey_wish = registry.JourneyWish.insert()
+        journey_wish = registry.JourneyWish.insert(user=user_1)
 
         assert journey_wish.state == "draft"
         assert not journey_wish.active
@@ -89,14 +92,14 @@ class TestJourneyWishModel:
         assert journey_wish.active
         assert journey_wish.activation_date == date.today()
 
-    def test_deactivate_journey_wish(self, rollback_registry):
+    def test_deactivate_journey_wish(self, rollback_registry, user_1):
 
         """This test is aimed at checking that the deactivate function is
            working as intented."""
 
         registry = rollback_registry
 
-        journey_wish = registry.JourneyWish.insert()
+        journey_wish = registry.JourneyWish.insert(user=user_1)
 
         # By default journey_wish is not activated so start by activating it
         # before deactivating it
@@ -106,7 +109,7 @@ class TestJourneyWishModel:
         assert journey_wish.state == "draft"
         assert not journey_wish.active
 
-    def test_journey_wish_check_state(self, rollback_registry):
+    def test_journey_wish_check_state(self, rollback_registry, user_1):
 
         """This test is aimed at checking that the check_state method from
            Model.JourneyWish is working as intented in the different possible
@@ -114,7 +117,7 @@ class TestJourneyWishModel:
 
         registry = rollback_registry
 
-        journey_wish = registry.JourneyWish.insert()
+        journey_wish = registry.JourneyWish.insert(user=user_1)
 
         # First, check state with init state at "draft"
         journey_wish.check_state()

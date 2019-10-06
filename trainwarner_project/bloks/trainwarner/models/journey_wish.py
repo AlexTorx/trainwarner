@@ -35,6 +35,10 @@ class JourneyWish(Mixin.UuidColumn, Mixin.TrackModel, Mixin.WorkFlow):
            * Activation date : Date, represent the moment when the wish could
            start being processed"""
 
+    user = Many2One(
+        label="User", model=Model.User, nullable=False, one2many="wishes"
+    )
+
     departure = Many2One(
         label="Departure Station",
         model=Model.Station,
