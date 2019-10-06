@@ -43,6 +43,7 @@ def user_1(rollback_registry):
 
     return rollback_registry.User.insert(
         login="user_1",
-        first_name="User #1 First Name",
-        last_name="User #2 Last Name",
+        first_name="John",
+        last_name="Doe",
+        email="john.doe@gmail.com"
     )
