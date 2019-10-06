@@ -1,19 +1,21 @@
-<p align="center">
-   <a href="https://travis-ci.org/AlexTorx/trainwarner">
-      <img alt="Build status" src="https://travis-ci.org/AlexTorx/trainwarner.svg?branch=master">
-      </img>
-   </a>
+.. raw:: html
 
-   <a href="https://coveralls.io/github/AlexTorx/trainwarner?branch=master">
-      <img alt="Code Coverage" src="https://coveralls.io/repos/github/AlexTorx/trainwarner/badge.svg?branch=master">
-      </img>
-   </a>
+   <p align="center">
+      <a href="https://travis-ci.org/AlexTorx/trainwarner">
+         <img alt="Build status" src="https://travis-ci.org/AlexTorx/trainwarner.svg?branch=master">
+         </img>
+      </a>
 
-   <a href="https://github.com/psf/black">
-      <img alt="Black formatting style" src="https://img.shields.io/badge/code%20style-black-000000.svg">
-      </img>
-   </a>
-</p>
+      <a href="https://coveralls.io/github/AlexTorx/trainwarner?branch=master">
+         <img alt="Code Coverage" src="https://coveralls.io/repos/github/AlexTorx/trainwarner/badge.svg?branch=master">
+         </img>
+      </a>
+
+      <a href="https://github.com/psf/black">
+         <img alt="Black formatting style" src="https://img.shields.io/badge/code%20style-black-000000.svg">
+         </img>
+      </a>
+   </p>
 
 ===========
 TrainWarner
