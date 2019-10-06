@@ -1,5 +1,5 @@
 from anyblok import Declarations
-from anyblok.column import String
+from anyblok.column import Email
 
 
 register = Declarations.register
@@ -17,13 +17,14 @@ class User(Mixin.TrackModel):
 
            * login : String representing login used for authenticating users.
            For this field, the email address will be used.
+           * First Name : string that contains user first name
+           * Last Name : string that contains user last name
+           * Name : function that returns user full name
 
        Implemented fields are the following :
 
-           These first fields overrides already existing fields :
-           * First Name : nullable string that contains user first name
-           * Last Name : nullable string that contains user last name
+           * Email address : string that contains user email address
+
     """
 
-    first_name = String(label="First Name", nullable=True)
-    last_name = String(label="Last Name", nullable=True)
+    email = Email(label="Email Address", nullable=False, unique=True)
