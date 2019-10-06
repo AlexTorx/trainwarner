@@ -1,16 +1,14 @@
-.. class:: center
+.. image:: https://travis-ci.org/AlexTorx/trainwarner.svg?branch=master
+    :target: https://travis-ci.org/AlexTorx/trainwarner
+    :alt: Build Status
 
-   .. image:: https://travis-ci.org/AlexTorx/trainwarner.svg?branch=master
-       :target: https://travis-ci.org/AlexTorx/trainwarner
-       :alt: Build Status
+.. image:: https://coveralls.io/repos/github/AlexTorx/trainwarner/badge.svg?branch=master
+    :target: https://coveralls.io/github/AlexTorx/trainwarner?branch=master
+    :alt: Code Coverage
 
-   .. image:: https://coveralls.io/repos/github/AlexTorx/trainwarner/badge.svg?branch=master
-       :target: https://coveralls.io/github/AlexTorx/trainwarner?branch=master
-       :alt: Code Coverage
-
-   .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-       :target: https://github.com/psf/black
-       :alt: Black formatting style
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: Black formatting style
 
 ===========
 TrainWarner
