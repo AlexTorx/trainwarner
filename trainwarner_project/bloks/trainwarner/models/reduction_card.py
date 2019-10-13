@@ -16,26 +16,23 @@ class ReductionCard(Mixin.UuidColumn):
     NAME = None
 
     code = Selection(
-            label="Code", selections='get_cards_codes', nullable=False)
+        label="Code", selections="get_cards_codes", nullable=False
+    )
     name = Text(nullable=False)
     properties = Jsonb(label="Card Properties")
 
     @classmethod
     def define_mapper_args(cls):
         mapper_args = super(ReductionCard, cls).define_mapper_args()
-        if cls.__registry_name__ == 'Model.ReductionCard':
-            mapper_args.update({
-                'polymorphic_on': cls.code
-                })
+        if cls.__registry_name__ == "Model.ReductionCard":
+            mapper_args.update({"polymorphic_on": cls.code})
         else:
-            mapper_args.update({
-                'polymorphic_identity': cls.CODE
-                })
+            mapper_args.update({"polymorphic_identity": cls.CODE})
         return mapper_args
 
     @classmethod
     def get_cards_codes(cls):
-        return {card['code']: card['name'] for card in _CARDS}
+        return {card["code"]: card["name"] for card in _CARDS}
 
     @classmethod
     def before_insert_orm_event(cls, connection, mapper, target):
@@ -109,8 +106,5 @@ class HappyCard(Model.ReductionCard):
     # To make requests with this card, its number (starting with 'HC') must be
     # provided
     properties = Jsonb(
-            label="Card Properties",
-            default=dict(
-                card_number='HCxxxxxxxxx'
-                )
-            )
+        label="Card Properties", default=dict(card_number="HCxxxxxxxxx")
+    )

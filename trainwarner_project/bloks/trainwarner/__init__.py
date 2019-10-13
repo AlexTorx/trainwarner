@@ -2,8 +2,7 @@
 """
 from anyblok.blok import Blok
 from anyblok.config import Configuration
-
-from . import reduction_cards, stations
+from . import stations
 
 
 class Trainwarner(Blok):

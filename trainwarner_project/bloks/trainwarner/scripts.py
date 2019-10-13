@@ -57,6 +57,7 @@ def populate_stations():
     file_path = Configuration.get("stations_data")
     stations_populate(registry=registry, path=file_path)
 
+
 def update_stations_file():
 
     """This is the script called by using anyblok_update_stations_file -c

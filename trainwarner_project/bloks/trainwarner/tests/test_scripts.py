@@ -4,10 +4,6 @@ from trainwarner_project.bloks.trainwarner.stations import (
     update_station_file,
     update_or_create as stations_update_or_create,
 )
-from trainwarner_project.bloks.trainwarner.reduction_cards import (
-    _CARDS,
-    update_or_create as cards_update_or_create,
-)
 
 import os
 
@@ -84,35 +80,3 @@ class TestStationScript:
 
         stations_update_or_create(registry=registry)
         assert registry.Station.query().count() == count
-
-
-@pytest.mark.usefixtures("rollback_registry")
-class TestReductionCardScript:
-
-    """These tests are intented to check reduction cards population scripts."""
-
-    def test_reduction_cards(self, rollback_registry):
-
-        """This test aims at checking that Model.ReductionCard can be properly
-           filled with data."""
-
-        registry = rollback_registry
-
-        # Save cards code in a list for further testing
-        cards_code = [card["code"] for card in _CARDS]
-
-        # Empty database
-        for card in registry.ReductionCard.query().all():
-            card.delete()
-
-        cards_update_or_create(registry=registry)
-
-        assert registry.ReductionCard.query().count() == len(_CARDS)
-        for card in registry.ReductionCard.query().all():
-            assert card.code in cards_code
-
-        cards_update_or_create(registry=registry)
-
-        assert registry.ReductionCard.query().count() == len(_CARDS)
-        for card in registry.ReductionCard.query().all():
-            assert card.code in cards_code
