@@ -58,13 +58,12 @@ class Trainwarner(Blok):
         if not latest:
             self.install()
         else:
-            reduction_cards.update_or_create(registry=self.registry)
             stations_path = Configuration.get("stations_data")
             stations.update_or_create(
                 registry=self.registry, path=stations_path
             )
 
     def install(self):
-        reduction_cards.update_or_create(registry=self.registry)
         stations_path = Configuration.get("stations_data")
         stations.update_or_create(registry=self.registry, path=stations_path)
+        pass
