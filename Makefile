@@ -24,25 +24,34 @@ setup: ## install python project dependencies
 setup-tests: ## install python project dependencies for tests
 	pip install --upgrade pip wheel
 	pip install --upgrade -r requirements.test.txt
-	pip install -e .
-	anyblok_createdb -c app.test.cfg || anyblok_updatedb -c app.test.cfg
+	make simple-setup-tests
+
+simple-setup-tests: ## initiate/update project without installing requirements in case of low bandwidth
+	pip install -e . && (anyblok_createdb -c app.test.cfg || anyblok_updatedb -c app.test.cfg)
 
 init-dev: ## setup python venv for dev purposes, runs it and load tmuxp session
 	( \
 		source venv/bin/activate || python3 -m venv venv && source venv/bin/activate; \
-		make setup-dev && make setup-tests; \
-		tmuxp load trainwarner.tmuxp.yml; \
+		make setup-dev && make setup-tests && tmuxp load trainwarner.tmuxp.yml; \
+	)
+
+simple-init-dev: ## setup python venv for dev purposes, runs it and load tmuxp session for low bandswidth
+	( \
+		source venv/bin/activate || python3 -m venv venv && source venv/bin/activate; \
+		make simple-setup-dev && make simple-setup-tests && tmuxp load trainwarner.tmuxp.yml; \
 	)
 
 setup-dev: ## install python project dependencies for development
 	pip install --upgrade pip wheel
 	pip install --upgrade -r requirements.dev.txt
-	pip install -e .
-	anyblok_createdb -c app.dev.cfg || anyblok_updatedb -c app.dev.cfg
+	make simple-setup-dev
 #	## install nodejs / npm
 #	nodeenv -p
 #	npm i -g npm
 #	npm --prefix trainwarner_project/backend_ui/ install
+
+simple-setup-dev: ## initiate/update project without installing requirements in case of low bandwidth
+	pip install -e . && (anyblok_createdb -c app.dev.cfg || anyblok_updatedb -c app.dev.cfg)
 
 run-dev: ## launch pyramid development server
 	anyblok_pyramid -c app.dev.cfg --wsgi-host 0.0.0.0
