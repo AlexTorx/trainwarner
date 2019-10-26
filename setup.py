@@ -56,6 +56,8 @@ setup(
     entry_points={
         'bloks': [
             'trainwarner=trainwarner_project.bloks.trainwarner:Trainwarner',
+            'trainwarner_backend=trainwarner_project.bloks.trainwarner_backend'
+            ':TrainwarnerBackend',
             'frontend=trainwarner_project.bloks.frontend:Frontend'
             ],
         'console_scripts': [
