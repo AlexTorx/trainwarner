@@ -33,13 +33,20 @@ def admin_user(rollback_registry):
     """
 
     user = rollback_registry.User.insert(
-            email="admin@trainwarner.com", first_name="Alexis",
-            last_name="Tourneux", login="admin")
+        email="admin@trainwarner.com",
+        first_name="Alexis",
+        last_name="Tourneux",
+        login="admin",
+    )
     rollback_registry.User.CredentialStore.insert(
-            login=user.login, password="1234")
+        login=user.login, password="1234"
+    )
 
-    admin_role = rollback_registry.User.Role.query().filter_by(
-            name="common-admin").first()
+    admin_role = (
+        rollback_registry.User.Role.query()
+        .filter_by(name="common-admin")
+        .first()
+    )
     admin_role.users.append(user)
 
     return user
@@ -52,11 +59,8 @@ def authenticated_headers(rollback_registry, admin_user, fixture_webserver):
        make requests on protected API endpoints in tests suite."""
 
     response = fixture_webserver.post_json(
-           '/backend/api/v1/auth/login',
-            dict(
-                login=admin_user.login,
-                password="1234"
-                )
-            )
+        "/backend/api/v1/auth/login",
+        dict(login=admin_user.login, password="1234"),
+    )
 
-    return {'Set-Cookie': response.headers.get('Set-Cookie')}
+    return {"Set-Cookie": response.headers.get("Set-Cookie")}

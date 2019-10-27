@@ -68,4 +68,5 @@ class TrainwarnerBackend(Blok):
 
     def install(self):
         self.registry.User.Role.insert(
-                name="common-admin", label="Common Admin Resource")
+            name="common-admin", label="Common Admin Resource"
+        )
