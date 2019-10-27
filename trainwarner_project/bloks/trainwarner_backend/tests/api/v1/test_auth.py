@@ -60,3 +60,52 @@ class TestAuthLogin:
 
         assert response.status_code == 401
         assert "Set-Cookie" not in response.headers.keys()
+
+
+@pytest.mark.usefixtures("authenticated_headers", "webserver")
+class TestAuthLogout:
+
+    """This test class is aimed at checking that API endpoint located at
+       /backend/api/v1/auth/logout is working as intented for logging users
+       out.
+    """
+
+    def test_auth_logout_allowed_methods(self, webserver):
+
+        """This test is aimed at checking that only the GET method is allowed
+           on /backend/api/v1/auth/logout route."""
+
+        webserver.get("/backend/api/v1/auth/logout")
+
+        # Other methods should return a '405 Method Not Allowed' HTTP error
+        response = webserver.post("/backend/api/v1/auth/logout", status=405)
+        assert response.status_code == 405
+
+        response = webserver.put("/backend/api/v1/auth/logout", status=405)
+        assert response.status_code == 405
+
+        response = webserver.patch("/backend/api/v1/auth/logout", status=405)
+        assert response.status_code == 405
+
+        response = webserver.delete("/backend/api/v1/auth/logout", status=405)
+        assert response.status_code == 405
+
+    def test_auth_logout_authenticated_user(
+        self, webserver, authenticated_headers
+    ):
+
+        """This test is aimed at checking that autenticated users get properly
+           logged out when using /backend/api/v1/auth/logout API endpoint."""
+
+        response = webserver.get(
+            "/backend/api/v1/auth/logout", headers=authenticated_headers
+        )
+
+        assert response.status_code == 200
+        assert "Set-Cookie" in response.headers.keys()
+
+        # API endpoint may return several 'Set-Cookie' headers so check all of
+        # them are empty cookie authentication tokens
+        for header, value in response.headers.items():
+            if header == "Set-Cookie":
+                assert "auth_tkt=;" in value
