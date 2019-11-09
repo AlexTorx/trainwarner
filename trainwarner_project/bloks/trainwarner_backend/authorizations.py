@@ -14,6 +14,22 @@ _PERMISSIONS = [
         perm_update=dict(matched=True),
         perm_delete=dict(matched=False),
     ),
+    dict(
+        resource="user-backend",
+        role="common-admin",
+        perm_read=dict(matched=True),
+        perm_create=dict(matched=True),
+        perm_update=dict(matched=True),
+        perm_delete=dict(matched=True),
+    ),
+    dict(
+        resource="passenger-backend",
+        role="common-admin",
+        perm_read=dict(matched=True),
+        perm_create=dict(matched=True),
+        perm_update=dict(matched=True),
+        perm_delete=dict(matched=True),
+    ),
 ]
 
 

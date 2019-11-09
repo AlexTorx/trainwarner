@@ -1,5 +1,3 @@
-"""Blok declaration example
-"""
 from anyblok.blok import Blok
 
 from uuid import UUID
